@@ -65,22 +65,17 @@ bool CanArray(int rows, int cols)
 {
     return (rows != cols);
 }
-void sumOfRowArray(int[,] array)
-{ 
-    int row = 0; 
-    for (int i = 0; i < array.GetLength(0); i++)
-    {
-        int max = 0;
+int SumOfArray(int [,] array, int i)
+{
+    int sumRow = array[i, 0];
         for (int j = 0; j < array.GetLength(1); j++)
         {
-            int ;
-            sum += array[i, j];
+            sumRow += array[i, j];
+
         }
-        if (sum > max) row = i + 1;
-        max = sum;
-    }
-    Console.WriteLine(row);                                                                                                                
+            return sumRow;                                                                                                               
 }
+
 int userLengthRow = getFromUserInt("Введите размер строк");
 int userLengthCol = getFromUserInt("Введите размер колонок");
 bool IsArrayMoves = CanArray(userLengthRow, userLengthCol);
@@ -88,7 +83,18 @@ if(IsArrayMoves)
 {
     int[,] generatedArray = Generate2DArray(userLengthRow, userLengthCol, 10);
     print2dArray(generatedArray, "Исходный массив");
-    sumOfRowArray(generatedArray);
+    int sumRows = SumOfArray(generatedArray, 0);
+    int row = 0;
+    for (int i = 1; i < generatedArray.GetLength(0); i++)
+    {
+        int maxSumRow = SumOfArray(generatedArray, i);
+        if (sumRows > maxSumRow)
+        {
+            sumRows = maxSumRow;
+            row = i;
+        }
+    }
+    Console.WriteLine($"Строка с наименьшей суммой { row + 1}");
 }
 else
 {
