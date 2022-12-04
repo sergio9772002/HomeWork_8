@@ -67,7 +67,7 @@ bool CanArray(int rows, int cols)
 }
 int SumOfArray(int [,] array, int i)
 {
-    int sumRow = array[i, 0];
+    int sumRow = 0;
         for (int j = 0; j < array.GetLength(1); j++)
         {
             sumRow += array[i, j];
@@ -84,10 +84,12 @@ if(IsArrayMoves)
     int[,] generatedArray = Generate2DArray(userLengthRow, userLengthCol, 10);
     print2dArray(generatedArray, "Исходный массив");
     int sumRows = SumOfArray(generatedArray, 0);
+    Console.WriteLine($"Сумма строки равна {sumRows}");
     int row = 0;
     for (int i = 1; i < generatedArray.GetLength(0); i++)
     {
         int maxSumRow = SumOfArray(generatedArray, i);
+        Console.WriteLine($"Сумма строки равна {maxSumRow}");
         if (sumRows > maxSumRow)
         {
             sumRows = maxSumRow;
